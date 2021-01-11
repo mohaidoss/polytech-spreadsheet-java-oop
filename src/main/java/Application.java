@@ -12,15 +12,16 @@ import noyau.*;
 
 public class Application {
 
-    public static void main(String[] args) {
-        Grille grille = new Grille();
-        grille.add("A", 1, 100.0);
-        grille.add("A", 2, 50.0);
-        grille.add("B", 2, 12.0);
+    public static void main(String[] args) {    
+        Grille g = new Grille();
+        double a = 100.0;
+        g.add("A", 1, a);
+        g.add("A", 2, 50.0);
+        g.add("B", 2, 12.0);
         
-        Formule f_add = Addition("A1","A2");
-        grille.add("C", 1, f_add);
+        Formule f_add = null;
         
+        g.add("C", 1, f_add);
     }
     
 }

@@ -7,41 +7,42 @@ protected Map<String,Case> cases = new TreeMap<String,Case>();
 int L = 20;
 int C = 26;
 
-    public void Settaille( int L, int C){
-        Scanner sc = new Scanner(System.in);
-        this.L= sc.nextInt();
-        this.C= sc.nextInt();
-    }
-
     public void add(String colonne, int ligne, double x)
     {   
         Case c = new Case(colonne, ligne);
         c.fixervaleur(x);
         
-        cases.put(colonne + ligne, c);
+        this.cases.put(colonne + ligne, c);
     }
     public void add(String colonne, int ligne, Formule F){
         try{
             Case c = new Case(colonne, ligne);
             c.Setformule(F);
-            cases.put(colonne + ligne, c);
+            this.cases.put(colonne + ligne, c);
         } catch (CycleException e){
             System.out.println("Cycle detecté");
         }
     }         
-            
+    public Case getCase(String nomCase){
+        return this.cases.get(nomCase);
+    }    
+    
     public double GetValeur( String nomCase ){
         return cases.get(nomCase).valeur();
     }
-
+/*
     public String GetContenu( String nomCase ){
-        return "la formule utilisé blabla" + cases.get(nomCase).valeur();
+        if (cases.get(nomCase).formule == null)
+           return nomCase + " " + GetValeur(nomCase);
+        else
+            return nomCase + " : " + cases.get(nomCase).formule.toString();
     }
 
     public String GetContenudev( String nomCase ){
-        return "Les formules utilisés en détail blabla" + cases.get(nomCase).valeur();
+        if (cases.get(nomCase).formule == null)
+           return nomCase + " " + GetValeur(nomCase);
+        else
+            return nomCase + " : " + cases.get(nomCase).formule.toStringdev();
     }
-    
-    public Grille(){        
-    }
+  */  
 }

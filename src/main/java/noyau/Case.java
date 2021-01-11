@@ -19,21 +19,23 @@ public class Case extends Observable{
     
     boolean dansCycle(Formule F){
         if(F instanceof Fonction){
-            if (F.setCase.contains(this))
+            if (((Fonction) F).setCase.contains(this))
                 return true;
-            else if (F.setCase.stream().allMatch(c -> c.formule == null))
+            else if (((Fonction) F).setCase.stream().allMatch(c -> c.formule == null))
                 return false;
             else
-                return (F.setCase.stream().filter(c -> c.formule != null).forEach(c -> this.dansCycle(c.formule)));
+                return (((Fonction) F).setCase.stream().filter(c -> c.formule != null).filter(c -> this.dansCycle(c.formule)).toArray().length) == 0;
+//(((Fonction) F).setCase.stream().filter(c -> c.formule != null).forEach(c -> this.dansCycle(c.((Fonction) formule))));
         }
-        else {
-            if (F.droite == this || F.gauche == this)
+        else if (F instanceof Operationbinaire){
+            if (((Operationbinaire) F).droite == this || ((Operationbinaire) F).gauche == this)
                 return true;
-            else if (F.gauche.formule == null && F.droite.formule == null)
+            else if (((Operationbinaire) F).gauche.formule == null && ((Operationbinaire) F).droite.formule == null)
                 return false;
             else
-                return (this.dansCycle(F.droite.formule) || this.dansCycle(F.gauche.formule));
+                return (this.dansCycle(((Operationbinaire) F).droite.formule) || this.dansCycle(((Operationbinaire) F).gauche.formule));
         }
+        return false;
     }
     /*boolean dansCycle(Fonction F){
         if (F.setCase.contains(this))
