@@ -2,10 +2,10 @@ package noyau;
 
 import java.util.*; 
 
-public class Grille { //utilisation d'interface a voir
-protected Map<String,Case> cases = new TreeMap<String,Case>();
-int L = 20;
-int C = 26;
+public class Grille implements Observer{ //utilisation d'interface a voir
+Map<String,Case> cases;
+int L ;
+int C ;
 
     public void add(String colonne, int ligne, double x)
     {   
@@ -23,6 +23,7 @@ int C = 26;
             System.out.println("Cycle detecté");
         }
     }         
+    
     public Case getCase(String nomCase){
         return this.cases.get(nomCase);
     }    
@@ -45,4 +46,14 @@ int C = 26;
             return nomCase + " : " + cases.get(nomCase).formule.toStringdev();
     }
   */  
+    public Grille(){
+        this.C = 26;
+        this.L = 20;
+        this.cases = new TreeMap<>();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        cases.values().stream().filter(c -> c.formule != null).forEach(c-> c.fixervaleur(c.formule.eval()));
+    }
 }

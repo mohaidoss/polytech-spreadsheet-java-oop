@@ -14,14 +14,17 @@ public class Application {
 
     public static void main(String[] args) {    
         Grille g = new Grille();
-        double a = 100.0;
-        g.add("A", 1, a);
+        Case.addObserver(g);
+        g.add("A", 1, 100.0);
         g.add("A", 2, 50.0);
         g.add("B", 2, 12.0);
-        
-        Formule f_add = null;
+
+        Formule f_add = new Addition(g.getCase("A2"),g.getCase("B2"));
         
         g.add("C", 1, f_add);
+        System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
+        g.add("B", 2, 50);
+        System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
     }
     
 }

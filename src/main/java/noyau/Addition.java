@@ -18,11 +18,6 @@ public class Addition extends Operationbinaire{
         return super.droite.valeur() + super.gauche.valeur();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        this.eval();
-    }    
-    
     public Addition(Case g,Case d){
         super(g,d);
     }
