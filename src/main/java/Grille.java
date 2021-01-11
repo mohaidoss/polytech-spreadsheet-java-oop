@@ -11,6 +11,20 @@ int C = 26;
         this.C= sc.nextInt();
     }
 
+    public void add(String colonne, int ligne, double x)
+    {   
+        Case c = new Case(colonne, ligne);
+        c.fixervaleur(x);
+        
+        cases.put(colonne + ligne, c);
+    }
+    public void add(String colonne, int ligne, Formule F){
+        Case c = new Case(colonne, ligne);
+        c.Setformule(F);
+        
+        cases.put(colonne + ligne, c);
+    }         
+            
     public double GetValeur( String nomCase ){
         return cases.get(nomCase).valeur();
     }
