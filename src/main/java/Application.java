@@ -18,6 +18,8 @@ public class Application {
         grille.add("A", 2, 50.0);
         grille.add("B", 2, 12.0);
         
+        Formule f_add = Addition("A1","A2");
+        grille.add("C", 1, f_add);
         
     }
     

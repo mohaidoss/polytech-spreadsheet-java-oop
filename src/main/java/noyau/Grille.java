@@ -21,10 +21,13 @@ int C = 26;
         cases.put(colonne + ligne, c);
     }
     public void add(String colonne, int ligne, Formule F){
-        Case c = new Case(colonne, ligne);
-        c.Setformule(F);
-        
-        cases.put(colonne + ligne, c);
+        try{
+            Case c = new Case(colonne, ligne);
+            c.Setformule(F);
+            cases.put(colonne + ligne, c);
+        } catch (CycleException e){
+            System.out.println("Cycle detecté");
+        }
     }         
             
     public double GetValeur( String nomCase ){

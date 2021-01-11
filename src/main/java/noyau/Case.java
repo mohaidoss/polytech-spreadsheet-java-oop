@@ -16,7 +16,7 @@ public class Case extends Observable{
 	setChanged();
 	notifyObservers();
     }
-    /*
+    
     boolean dansCycle(Formule F){
         if(F instanceof Fonction){
             if (F.setCase.contains(this))
@@ -34,8 +34,8 @@ public class Case extends Observable{
             else
                 return (this.dansCycle(F.droite.formule) || this.dansCycle(F.gauche.formule));
         }
-    }*/
-    boolean dansCycle(Fonction F){
+    }
+    /*boolean dansCycle(Fonction F){
         if (F.setCase.contains(this))
             return true;
         else if (F.setCase.stream().allMatch(c -> c.formule == null))
@@ -51,30 +51,19 @@ public class Case extends Observable{
         else
             return (this.dansCycle(F.droite.formule) || this.dansCycle(F.gauche.formule));
     }
+    */
+    public void Setformule( Formule F ) throws CycleException
+    {
+        if (this.dansCycle(F))
+            throw new CycleException();
+        else {
+            this.formule = F;
+            setChanged();
+            notifyObservers();
+            this.fixervaleur(F.eval());
+        }
+    }
     
-    public void Setformule( Operationbinaire F ) throws CycleException
-    {
-        if (this.dansCycle(F))
-            throw new CycleException();
-        else {
-            this.formule = F;
-            setChanged();
-            notifyObservers();
-            this.fixervaleur(F.eval());
-        }
-    }
-
-    public void Setformule(Fonction F) throws CycleException
-    {
-        if (this.dansCycle(F))
-            throw new CycleException();
-        else {
-            this.formule = F;
-            setChanged();
-            notifyObservers();
-            this.fixervaleur(F.eval());
-        }
-    }
     
     public double valeur()
     {         
