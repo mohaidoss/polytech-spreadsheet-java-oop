@@ -25,7 +25,7 @@ public class Case extends Observable{
     boolean dansCycle(Operationbinaire F){
         if (F.droite == this || F.gauche == this)
             return true;
-        else if (F.droite.formule == null && F.gauche.formule == null)
+        else if (F.gauche.formule == null && F.droite.formule == null)
             return false;
         else
             return (this.dansCycle(F.droite.formule) || F.droite.dansCycle(F));
