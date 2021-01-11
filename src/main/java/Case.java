@@ -28,7 +28,7 @@ public class Case extends Observable{
         else if (F.gauche.formule == null && F.droite.formule == null)
             return false;
         else
-            return (this.dansCycle(F.droite.formule) || F.droite.dansCycle(F));
+            return (this.dansCycle(F.droite.formule) || this.dansCycle(F.gauche.formule));
     }
     
     public void Setformule( Operationbinaire F ) throws CycleException
