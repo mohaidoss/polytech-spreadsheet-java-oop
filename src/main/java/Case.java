@@ -5,7 +5,7 @@ import java.util.Observable;
 public class Case extends Observable{
     String colonne;
     int ligne;
-    double valeur;
+    private double valeur;
     Formule formule;
 
     public void fixervaleur (double x)
@@ -15,9 +15,26 @@ public class Case extends Observable{
 	notifyObservers();
     }
     
+    boolean dansCycle(Fonction F){
+        if (F.setCase.contains(this))
+            return true;
+        else if (F.setCase.stream().allMatch(c -> c.formule == null))
+            return false;
+        else
+            return (F.setCase.stream().filter(c -> c.formule != null).forEach(c -> this.dansCycle(c.formule)));
+    }
+    boolean dansCycle(Operationbinaire F){
+        if (F.droite == this || F.gauche == this)
+            return true;
+        else if (F.droite.formule == null || F.gauche.formule == null)
+            return false;
+        else
+            return (this.dansCycle(F.droite.formule) || F.droite.dansCycle(F));
+    }
+    
     public void Setformule( Operationbinaire F ) throws CycleException
     {
-        if (F.droite == this || F.gauche == this)
+        if (this.dansCycle(F))
             throw new CycleException();
         else {
             this.formule = F;
@@ -29,7 +46,7 @@ public class Case extends Observable{
 
     public void Setformule(Fonction F) throws CycleException
     {
-        if (F.setCase.contains(this))
+        if (this.dansCycle(F))
             throw new CycleException();
         else {
             this.formule = F;

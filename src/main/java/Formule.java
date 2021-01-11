@@ -1,5 +1,5 @@
 import java.util.*; 
-
+import java.util.Observer;
 public abstract class Formule implements Observer 
 {	
     abstract double eval();
