@@ -1,3 +1,5 @@
+package noyau;
+
 import java.util.*; 
 
 public class Somme extends Fonction {

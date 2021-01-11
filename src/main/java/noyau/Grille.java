@@ -1,3 +1,5 @@
+package noyau;
+
 import java.util.*; 
 
 public class Grille { //utilisation d'interface a voir
@@ -35,5 +37,8 @@ int C = 26;
 
     public String GetContenudev( String nomCase ){
         return "Les formules utilisés en détail blabla" + cases.get(nomCase).valeur();
+    }
+    
+    public Grille(){        
     }
 }

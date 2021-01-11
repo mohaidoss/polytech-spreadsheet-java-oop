@@ -1,3 +1,5 @@
+package noyau;
+
 import java.util.*; 
 
 public abstract class Fonction extends Formule{
