@@ -3,8 +3,7 @@ import java.util.Observable;
 
 
 public class Case extends Observable{
-    String colonne;
-    int ligne;
+    String nomCase;
     private double valeur;
     Formule formule;
 
@@ -61,10 +60,8 @@ public class Case extends Observable{
         return valeur;
     }
     
-    public Case(String col, int lin)
+    public Case(String cellN)
     {
-        
-        colonne = col;
-        ligne = lin;
+        this.nomCase = cellN;
     }
 }
