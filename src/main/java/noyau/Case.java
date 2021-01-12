@@ -20,6 +20,13 @@ public class Case extends Observable implements Serializable{
     }
     
     boolean dansCycle(Formule F){
+
+        /** TODO: Cet method a rien de oriente objet. en oritente objet l'utilisation de instanceof est interdit. Il faut repenser tout ce method en pensant a deleguer. 
+         Il faut penser a a F.dansCycle(this), qui va faire le bon morceau de code. 
+         Apres ici on a le cas ou ils sont tous des formules ou aucun. C'est pas si facile il faut penser au tout les possibles case. 
+         
+        
+          */
         if(F instanceof Fonction){
             if (((Fonction) F).setCase.contains(this))
                 return true;
