@@ -5,6 +5,7 @@
  */
 package noyau;
 
+import java.io.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,7 +13,7 @@ import java.util.Observer;
  *
  * @author MEHDI
  */
-public abstract class Formule{
+public abstract class Formule implements Serializable{
     public abstract double eval();   
     public Formule(){}
     //public abstract String toStringdev();

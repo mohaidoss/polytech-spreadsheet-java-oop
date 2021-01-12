@@ -9,10 +9,10 @@
  * @author MEHDI
  */
 import noyau.*;
+import java.io.*;
+public class Application{
 
-public class Application {
-
-    public static void main(String[] args) {    
+    public static void main(String[] args) throws IOException, ClassNotFoundException{    
         Grille g = new Grille();
         g.add("A", 1, 100.0);
         g.add("A", 2, 50.0);
@@ -30,6 +30,13 @@ public class Application {
         
         g.add("C", 1, f_addcycle);
         System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
+        
+        g.save();
+        /* LOAD SERIALIZABLE
+        g.load("grille.bin");
+        System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
+        System.out.println("Hello this is B2 " + g.getCase("B2").valeur());
+        */
     }
     
 }

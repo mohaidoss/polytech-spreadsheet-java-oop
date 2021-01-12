@@ -1,12 +1,22 @@
 package noyau;
 
 import java.util.*; 
+import java.io.*;
 
 public class Grille implements Observer{ //utilisation d'interface a voir
-Map<String,Case> cases;
-int L ;
-int C ;
-
+    Map<String,Case> cases;
+    int L ;
+    int C ;
+    public void save() throws IOException, ClassNotFoundException{     
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("grille.bin"));
+        out.writeObject(cases);
+        out.close();
+    }
+    public void load(String fileName) throws IOException, ClassNotFoundException{
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+        cases = (TreeMap<String,Case>) in.readObject();
+        in.close();
+    }
     public void add(String colonne, int ligne, double x)
     {   
         if (this.cases.get(colonne + ligne) == null){

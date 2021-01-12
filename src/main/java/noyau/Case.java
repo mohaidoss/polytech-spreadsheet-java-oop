@@ -2,9 +2,9 @@ package noyau;
 
 
 import java.util.Observable;
+import java.io.*;
 
-
-public class Case extends Observable{
+public class Case extends Observable implements Serializable{
     String colonne;
     int ligne;
     private double valeur;
