@@ -18,7 +18,13 @@ public class Grille implements Observer{ //utilisation d'interface a voir
         in.close();
     }
     public void add(String colonne, int ligne, double x)
-    {   
+    {   /** 
+    TODO: la cuqalite du code des add n'est pas bonne, on a beaucoup des lignes repetees plusieurs fois
+    je te conseille de faire une methode auxiliere qui gere s'il faut o non creer une nouvelle instance, genre prendreOuInstantier(colonne, ligne).
+    Il faudrait un argument tres for pour avoir utilise hashmap. 
+    Pense a ca lors de  la confection du report.
+
+    */
         if (this.cases.get(colonne + ligne) == null){
             Case c = new Case(colonne, ligne);
             c.fixervaleur(x);
@@ -57,6 +63,8 @@ public class Grille implements Observer{ //utilisation d'interface a voir
     public double GetValeur( String nomCase ){
         return cases.get(nomCase).valeur();
     }
+
+    /** TODO: Le code commente est une indication de mauvaise qualite de code. fait attention */
 /*
     public String GetContenu( String nomCase ){
         if (cases.get(nomCase).formule == null)
