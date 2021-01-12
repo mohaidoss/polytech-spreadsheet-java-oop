@@ -11,7 +11,7 @@ public abstract class Fonction extends Formule{
     public abstract double eval() throws OperationImpossibleException;
     @Override
     public boolean dansCycle(Case c){
-        if (this.setCase.contains(this))
+        if (this.setCase.contains(c))
             return true;
         else if (this.setCase.stream().allMatch(cs -> cs.formule == null))
             return false;
