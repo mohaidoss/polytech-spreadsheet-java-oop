@@ -17,10 +17,10 @@ int C ;
         } else {
             Case c = this.cases.get(colonne + ligne);
             c.fixervaleur(x);
-            c.addObserver(this);    
+            c.addObserver(this);
             this.cases.put(colonne + ligne, c);
         }
-        
+    
     }
     public void add(String colonne, int ligne, Formule F){
         try{
