@@ -5,24 +5,22 @@
  */
 package noyau;
 
-import java.util.Observable;
-
 /**
  *
  * @author MEHDI
  */
-public class Addition extends Operationbinaire{
-
-    @Override
+public class Soustraction extends Operationbinaire {
+      @Override
     public double eval() {
-        return super.droite.valeur() + super.gauche.valeur();
+        return super.gauche.valeur() - super.droite.valeur();
     }
 
-    public Addition(Case g,Case d){
+    public Soustraction(Case g,Case d){
         super(g,d);
     }
-       @Override
+    
+      @Override
     public String toString(){
-        return "(" + super.gauche.colonne + super.gauche.ligne + " + " + super.droite.colonne + super.droite.ligne + ")";
+        return "(" + super.gauche.colonne + super.gauche.ligne + " - " + super.droite.colonne + super.droite.ligne + ")";
     }
 }

@@ -37,8 +37,10 @@ Si vous avez pas commence avec l'interface graphique, je vous conseille le faire
         
         g.add("C", 1, f_addcycle);
         System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
-        
+                
+        System.out.println(g.GetContenu("C1"));
         g.save();
+
         /* LOAD SERIALIZABLE
         g.load("grille.bin");
         System.out.println("Hello this is C1 " + g.getCase("C1").valeur());

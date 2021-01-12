@@ -14,7 +14,7 @@ import java.util.Observer;
  * @author MEHDI
  */
 public abstract class Formule implements Serializable{
-    public abstract double eval();   
+    public abstract double eval() throws OperationImpossibleException;
+    public abstract boolean dansCycle(Case c);
     public Formule(){}
-    //public abstract String toStringdev();
 }
