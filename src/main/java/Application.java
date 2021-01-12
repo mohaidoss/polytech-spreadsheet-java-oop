@@ -12,6 +12,13 @@ import noyau.*;
 import java.io.*;
 public class Application{
 
+/**
+TODO: Le texte du execerise parle de l'implementation d'interface graphique (voir le lien de wiki). 
+Pour moi il a deux choses a doner: soit un main avec l'implementation graphique, soit une batterie des tests que prouve la totalite des fonctionalites du logiciel.  
+Si vous avez pas commence avec l'interface graphique, je vous conseille le faire ou faire les tests. Mais ce main ne responde pas au besoin d'exercise. 
+
+*/
+
     public static void main(String[] args) throws IOException, ClassNotFoundException{    
         Grille g = new Grille();
         g.add("A", 1, 100.0);
