@@ -13,7 +13,7 @@ public abstract class Operationbinaire extends Formule {
         else if (this.gauche.formule == null && this.droite.formule == null)
             return false;
         else
-            return (this.dansCycle(c) || this.dansCycle(c));
+            return (this.droite.formule.dansCycle(c) || this.gauche.formule.dansCycle(c));
     }
     public Operationbinaire(Case g,Case d){
         gauche = g;

@@ -61,9 +61,9 @@ public class Grille implements Observer{ //utilisation d'interface a voir
             return nomCase + " : " + this.cases.get(nomCase).formule.toString();
     }
   
-    public Grille(){
-        this.C = 26;
-        this.L = 20;
+    public Grille(int L,int C){
+        this.C = C;
+        this.L = L;
         this.cases = new TreeMap<>();
     }
 
