@@ -24,10 +24,17 @@ int C ;
     }
     public void add(String colonne, int ligne, Formule F){
         try{
-            Case c = new Case(colonne, ligne);
-            c.Setformule(F);
-            c.addObserver(this);
-            this.cases.put(colonne + ligne, c);
+            if (this.cases.get(colonne + ligne) == null){
+                Case c = new Case(colonne, ligne);
+                c.Setformule(F);
+                c.addObserver(this);
+                this.cases.put(colonne + ligne, c);
+            } else {
+                Case c = this.cases.get(colonne+ligne);
+                c.Setformule(F);
+                c.addObserver(this);
+                this.cases.put(colonne + ligne, c);
+            }
         } catch (CycleException e){
             System.out.println("Cycle detecté");
         }

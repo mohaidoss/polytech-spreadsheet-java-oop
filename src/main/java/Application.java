@@ -26,7 +26,8 @@ public class Application {
       //  g.getCase("B2").addObserver(g);
         g.add("B", 2, 50);
         System.out.println("Hello this is B2 " + g.getCase("B2").valeur());
-
+        Formule f_addcycle = new Addition(g.getCase("A1"),g.getCase("C1"));
+        g.add("C", 1, f_addcycle);
         System.out.println("Hello this is C1 " + g.getCase("C1").valeur());
     }
     
