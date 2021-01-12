@@ -9,15 +9,24 @@ int C ;
 
     public void add(String colonne, int ligne, double x)
     {   
-        Case c = new Case(colonne, ligne);
-        c.fixervaleur(x);
+        if (this.cases.get(colonne + ligne) == null){
+            Case c = new Case(colonne, ligne);
+            c.fixervaleur(x);
+            c.addObserver(this);
+            this.cases.put(colonne + ligne, c);
+        } else {
+            Case c = this.cases.get(colonne + ligne);
+            c.fixervaleur(x);
+            c.addObserver(this);    
+            this.cases.put(colonne + ligne, c);
+        }
         
-        this.cases.put(colonne + ligne, c);
     }
     public void add(String colonne, int ligne, Formule F){
         try{
             Case c = new Case(colonne, ligne);
             c.Setformule(F);
+            c.addObserver(this);
             this.cases.put(colonne + ligne, c);
         } catch (CycleException e){
             System.out.println("Cycle detecté");
@@ -53,7 +62,8 @@ int C ;
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        cases.values().stream().filter(c -> c.formule != null).forEach(c-> c.fixervaleur(c.formule.eval()));
+    public void update(Observable obs, Object arg) {
+        System.out.println("update khdem ");
+        this.cases.values().stream().filter(c -> c.formule != null).forEach(c -> c.fixervaleur(c.formule.eval()));
     }
 }

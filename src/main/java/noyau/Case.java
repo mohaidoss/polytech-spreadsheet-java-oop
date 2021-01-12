@@ -12,9 +12,11 @@ public class Case extends Observable{
 
     public void fixervaleur (double x)
     {
-        this.valeur=x;
-	setChanged();
-	notifyObservers();
+        if (this.valeur != x){
+            this.valeur=x;
+            setChanged();
+            notifyObservers(this);
+        }
     }
     
     boolean dansCycle(Formule F){
@@ -60,9 +62,12 @@ public class Case extends Observable{
             throw new CycleException();
         else {
             this.formule = F;
-            setChanged();
-            notifyObservers();
-            this.fixervaleur(F.eval());
+            double x = F.eval();
+            if (this.valeur() != x){
+                this.fixervaleur(x);
+                setChanged();
+                notifyObservers(this);
+            }
         }
     }
     
