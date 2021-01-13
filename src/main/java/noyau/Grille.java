@@ -14,7 +14,7 @@ public class Grille implements Observer{ //utilisation d'interface a voir
     }
     public void load(String fileName) throws IOException, ClassNotFoundException{
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-        cases = (TreeMap<String,Case>) in.readObject();
+        cases = (HashMap<String,Case>) in.readObject();
         in.close();
     }
     
@@ -64,12 +64,12 @@ public class Grille implements Observer{ //utilisation d'interface a voir
     public Grille(int L,int C){
         this.C = C;
         this.L = L;
-        this.cases = new TreeMap<>();
+        this.cases = new HashMap<>();
     }
         public Grille(){
         this.C = 26;
         this.L = 20;
-        this.cases = new TreeMap<>();
+        this.cases = new HashMap<>();
     }
 
     @Override

@@ -197,12 +197,12 @@ public class TabObjProto extends JPanel {
         public void setValueAt(Object value, int row, int col) {
             double d=Double.parseDouble(value.toString());  
             // TODO remplacer par le code correspondant
-                mapserializable.add(this.getColumnName(col), row, d);//[row][col - 1] = (String) value;
+                mapserializable.add(this.getColumnName(col), row+1, d);//[row][col - 1] = (String) value;
 /*            else if (value instanceof Formule) {
                 mapserializable.add(this.getColumnName(col), row, (Formule) value);
             }
 */
-            calc[row][col] = this.getValueAt(row, col);
+            calc[row][col] = this.getValueAt(row+1, col);
 
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
