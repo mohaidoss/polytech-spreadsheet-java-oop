@@ -6,8 +6,6 @@
 package noyau;
 
 import java.io.*;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  *

@@ -45,5 +45,6 @@ public class Case extends Observable implements Serializable{
         this.colonne = col;
         this.ligne = lig;
         this.valeur = 0;
+        this.formule = (Formule) null;
     }
 }

@@ -8,8 +8,6 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -104,9 +102,9 @@ public class TabObjProto extends JPanel {
                     try {
                         calc.load("grille.bin");
                     } catch (IOException ex) {
-                        Logger.getLogger(TabObjProto.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("IOEXCEPTION");
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(TabObjProto.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("ClassNotfound");
                     }
         }
 
@@ -190,10 +188,10 @@ public class TabObjProto extends JPanel {
             // TODO remplacer par le code correspondant
             if (value instanceof Double) {
                 calc.add(this.getColumnName(col), row, (Double) value);//[row][col - 1] = (String) value;
-            }
+            }/*
             else if (value instanceof Formule) {
                 calc.add(this.getColumnName(col), row, (Formule) value);
-            }
+            }*/
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
             fireTableCellUpdated(row, col);

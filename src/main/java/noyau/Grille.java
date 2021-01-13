@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Grille implements Observer{ //utilisation d'interface a voir
-    Map<String,Case> cases;
+    public Map<String,Case> cases;
     int L ;
     int C ;
     public void save() throws IOException, ClassNotFoundException{     
@@ -60,10 +60,15 @@ public class Grille implements Observer{ //utilisation d'interface a voir
         else
             return nomCase + " : " + this.cases.get(nomCase).formule.toString();
     }
-  
+
     public Grille(int L,int C){
         this.C = C;
         this.L = L;
+        this.cases = new TreeMap<>();
+    }
+        public Grille(){
+        this.C = 26;
+        this.L = 20;
         this.cases = new TreeMap<>();
     }
 
