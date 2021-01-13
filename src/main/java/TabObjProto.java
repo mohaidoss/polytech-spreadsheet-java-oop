@@ -93,18 +93,25 @@ public class TabObjProto extends JPanel {
 		private static final long serialVersionUID = 1L;
 		// TODO
         // remplacer ce tableau en dur du prototype par la grille serialisee:
-        noyau.Grille calc;
-        //String[][] calc;
+        Grille mapserializable = new Grille();
+        String[][] calc;
 
         MyTableModel() {
-            // TODO: remplacer cette initialisation par le chargement de la grille serialisee
-            calc = new Grille(this.getRowCount(),this.getColumnCount());
                     try {
-                        calc.load("grille.bin");
+                        mapserializable.load("grille.bin");
+                        // TODO: remplacer cette initialisation par le chargement de la grille serialisee
+                        calc = new String[this.getRowCount()][this.getColumnCount()];
+                        for (int ligne =0; ligne < calc.length; ligne++)
+                            for (int colonne=1; colonne < calc[ligne].length; colonne++)
+                                try{
+                                    calc[ligne][colonne] = mapserializable.GetContenu(this.getNomCase(ligne, colonne)) + " = " + String.valueOf(mapserializable.GetValeur(getNomCase(ligne, colonne)));
+                                } catch (NullPointerException e){
+                                    calc[ligne][colonne] = "";
+                                }
                     } catch (IOException ex) {
                         System.out.println("IOEXCEPTION");
                     } catch (ClassNotFoundException ex) {
-                        System.out.println("ClassNotfound");
+                        System.out.println("CLASSNOTFOUNDEXCEPION");
                     }
         }
 
@@ -151,7 +158,7 @@ public class TabObjProto extends JPanel {
                 // TODO: remplacer par le contenu + la valeur
                 // de la case de nom getNomCase(row, col)
                 // dans la grille (comme dans la figure 1 du sujet).
-                return calc.GetContenu(getNomCase(row,col)) + calc.GetValeur(getNomCase(row,col));
+                return mapserializable.GetContenu(getNomCase(row,col)) + mapserializable.GetValeur(getNomCase(row,col));
             }
         }
 
@@ -186,12 +193,9 @@ public class TabObjProto extends JPanel {
         public void setValueAt(Object value, int row, int col) {
 
             // TODO remplacer par le code correspondant
-            if (value instanceof Double) {
-                calc.add(this.getColumnName(col), row, (Double) value);//[row][col - 1] = (String) value;
-            }/*
-            else if (value instanceof Formule) {
-                calc.add(this.getColumnName(col), row, (Formule) value);
-            }*/
+            if (value instanceof String) {
+                calc[row][col - 1] = (String) value;
+            }
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
             fireTableCellUpdated(row, col);
