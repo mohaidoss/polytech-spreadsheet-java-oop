@@ -195,15 +195,14 @@ public class TabObjProto extends JPanel {
         // - ajouter la case correspondante dans la grille
         @Override
         public void setValueAt(Object value, int row, int col) {
-
+            double d=Double.parseDouble(value.toString());  
             // TODO remplacer par le code correspondant
-            if (value instanceof Double) {
-                mapserializable.add(this.getColumnName(col), row, (double) value);//[row][col - 1] = (String) value;
-            }
-            else if (value instanceof Formule) {
+                mapserializable.add(this.getColumnName(col), row, d);//[row][col - 1] = (String) value;
+/*            else if (value instanceof Formule) {
                 mapserializable.add(this.getColumnName(col), row, (Formule) value);
             }
-                calc[row][col] = this.getValueAt(row, col);
+*/
+            calc[row][col] = this.getValueAt(row, col);
 
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
