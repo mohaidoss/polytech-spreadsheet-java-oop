@@ -103,11 +103,7 @@ public class TabObjProto extends JPanel {
                         calc = new String[this.getRowCount()][this.getColumnCount()];
                         for (int ligne =0; ligne < calc.length; ligne++)
                             for (int colonne=0; colonne < calc[ligne].length; colonne++)
-                                try{
-                                    calc[ligne][colonne] = this.getValueAt(ligne, colonne);//mapserializable.GetContenu(this.getNomCase(ligne, colonne)) + " = " + String.valueOf(mapserializable.GetValeur(getNomCase(ligne, colonne)));
-                                } catch (NullPointerException e){
-                                    calc[ligne][colonne] = "";
-                                }
+                                calc[ligne][colonne] = this.getValueAt(ligne, colonne);//mapserializable.GetContenu(this.getNomCase(ligne, colonne)) + " = " + String.valueOf(mapserializable.GetValeur(getNomCase(ligne, colonne)));
                     } catch (IOException ex) {
                         System.out.println("IOEXCEPTION");
                     } catch (ClassNotFoundException ex) {
@@ -159,9 +155,13 @@ public class TabObjProto extends JPanel {
                 // de la case de nom getNomCase(row, col)
                 // dans la grille (comme dans la figure 1 du sujet).
                 try{
-                    return mapserializable.GetContenu(getNomCase(row,col)) + mapserializable.GetValeur(getNomCase(row,col));
+                    return mapserializable.GetContenu(getNomCase(row,col)) +" = " + mapserializable.GetValeur(getNomCase(row,col));
                 } catch (NullPointerException e){
-                    return String.valueOf(mapserializable.GetValeur(getNomCase(row,col)));
+                    try{
+                        return String.valueOf(mapserializable.GetValeur(getNomCase(row,col)));
+                    } catch (NullPointerException ex){
+                        return "";
+                    }
                 }
             }
         }
@@ -197,18 +197,13 @@ public class TabObjProto extends JPanel {
         public void setValueAt(Object value, int row, int col) {
 
             // TODO remplacer par le code correspondant
-            if (value instanceof String) {
-                calc[row][col - 1] = (String) value;
-            }
             if (value instanceof Double) {
                 mapserializable.add(this.getColumnName(col), row, (double) value);//[row][col - 1] = (String) value;
             }
             else if (value instanceof Formule) {
                 mapserializable.add(this.getColumnName(col), row, (Formule) value);
             }
-            // Ne pas modifier :
-            // mise a jour automatique de l'affichage suite a la modification
-            fireTableCellUpdated(row, col);
+                calc[row][col] = this.getValueAt(row, col);
 
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
