@@ -102,9 +102,9 @@ public class TabObjProto extends JPanel {
                         // TODO: remplacer cette initialisation par le chargement de la grille serialisee
                         calc = new String[this.getRowCount()][this.getColumnCount()];
                         for (int ligne =0; ligne < calc.length; ligne++)
-                            for (int colonne=1; colonne < calc[ligne].length; colonne++)
+                            for (int colonne=0; colonne < calc[ligne].length; colonne++)
                                 try{
-                                    calc[ligne][colonne] = mapserializable.GetContenu(this.getNomCase(ligne, colonne)) + " = " + String.valueOf(mapserializable.GetValeur(getNomCase(ligne, colonne)));
+                                    calc[ligne][colonne] = this.getValueAt(ligne, colonne);//mapserializable.GetContenu(this.getNomCase(ligne, colonne)) + " = " + String.valueOf(mapserializable.GetValeur(getNomCase(ligne, colonne)));
                                 } catch (NullPointerException e){
                                     calc[ligne][colonne] = "";
                                 }
@@ -149,7 +149,7 @@ public class TabObjProto extends JPanel {
 
         @Override
         // Standard: doit renvoyer le contenu a afficher de la case correspondante
-        public Object getValueAt(int row, int col) {
+        public String getValueAt(int row, int col) {
             if (col == 0) {
                 // Fourni: ne rien changer.
                 // en colonne 0 : numeros de lignes
