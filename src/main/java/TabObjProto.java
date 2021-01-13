@@ -158,7 +158,11 @@ public class TabObjProto extends JPanel {
                 // TODO: remplacer par le contenu + la valeur
                 // de la case de nom getNomCase(row, col)
                 // dans la grille (comme dans la figure 1 du sujet).
-                return mapserializable.GetContenu(getNomCase(row,col)) + mapserializable.GetValeur(getNomCase(row,col));
+                try{
+                    return mapserializable.GetContenu(getNomCase(row,col)) + mapserializable.GetValeur(getNomCase(row,col));
+                } catch (NullPointerException e){
+                    return String.valueOf(mapserializable.GetValeur(getNomCase(row,col)));
+                }
             }
         }
 
@@ -196,6 +200,16 @@ public class TabObjProto extends JPanel {
             if (value instanceof String) {
                 calc[row][col - 1] = (String) value;
             }
+            if (value instanceof Double) {
+                mapserializable.add(this.getColumnName(col), row, (double) value);//[row][col - 1] = (String) value;
+            }
+            else if (value instanceof Formule) {
+                mapserializable.add(this.getColumnName(col), row, (Formule) value);
+            }
+            // Ne pas modifier :
+            // mise a jour automatique de l'affichage suite a la modification
+            fireTableCellUpdated(row, col);
+
             // Ne pas modifier :
             // mise a jour automatique de l'affichage suite a la modification
             fireTableCellUpdated(row, col);
